@@ -1,0 +1,18 @@
+flowchart LR
+    usuario(("Usuário\nAtor"))
+
+    subgraph sistema["Sistema: Catálogo de livros, séries e filmes"]
+        listar(["Listar itens do catálogo"])
+        buscar(["Buscar por título ou autor/diretor"])
+        detalhes(["Visualizar detalhes de um item"])
+        cadastrar(["Cadastrar item"])
+        editar(["Editar item"])
+        excluir(["Excluir item"])
+    end
+
+    usuario --- listar
+    usuario --- buscar
+    usuario --- detalhes
+    usuario --- cadastrar
+    usuario --- editar
+    usuario --- excluir

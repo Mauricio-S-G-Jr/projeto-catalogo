@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: catalogo_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: catalogo_db
+      MYSQL_USER: catalogo
+      MYSQL_PASSWORD: catalogo123
+      MYSQL_ROOT_PASSWORD: root123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
+volumes:
+  mysql_data:

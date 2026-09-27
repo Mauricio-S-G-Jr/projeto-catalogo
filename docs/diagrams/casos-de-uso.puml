@@ -1,0 +1,22 @@
+@startuml
+left to right direction
+
+actor "Usuário" as Usuario
+
+rectangle "Catálogo de livros, séries e filmes" {
+  usecase "Listar itens do catálogo" as Listar
+  usecase "Buscar por título ou\nautor/diretor" as Buscar
+  usecase "Visualizar detalhes\nde um item" as Detalhes
+  usecase "Cadastrar item" as Cadastrar
+  usecase "Editar item" as Editar
+  usecase "Excluir item" as Excluir
+}
+
+Usuario --> Listar
+Usuario --> Buscar
+Usuario --> Detalhes
+Usuario --> Cadastrar
+Usuario --> Editar
+Usuario --> Excluir
+
+@enduml

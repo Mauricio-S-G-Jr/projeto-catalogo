@@ -1,0 +1,53 @@
+classDiagram
+    direction LR
+
+    class HttpServlet {
+        <<Jakarta Servlet>>
+    }
+
+    class ItemServlet {
+        -ItemDAO itemDAO
+        +doGet(req: HttpServletRequest, resp: HttpServletResponse) void
+        +doPost(req: HttpServletRequest, resp: HttpServletResponse) void
+        +doDelete(req: HttpServletRequest, resp: HttpServletResponse) void
+        -handleDelete(req: HttpServletRequest, resp: HttpServletResponse) void
+    }
+
+    class ItemDAO {
+        +getConnection() Connection
+        +save(item: ItemCatalogo) void
+        +update(item: ItemCatalogo) void
+        +delete(id: Long) void
+        +findById(id: Long) ItemCatalogo
+        +findAll() List~ItemCatalogo~
+        +search(term: String) List~ItemCatalogo~
+        -mapItem(rs: ResultSet) ItemCatalogo
+    }
+
+    class ItemCatalogo {
+        -Long id
+        -String title
+        -String authorDirector
+        -int publicationYear
+        -String genre
+        -String synopsis
+        +ItemCatalogo()
+        +ItemCatalogo(id, title, authorDirector, publicationYear, genre, synopsis)
+        +getId() Long
+        +getTitle() String
+        +getAuthorDirector() String
+        +getPublicationYear() int
+        +getGenre() String
+        +getSynopsis() String
+        +setId(id: Long) void
+        +setTitle(title: String) void
+        +setAuthorDirector(authorDirector: String) void
+        +setPublicationYear(publicationYear: int) void
+        +setGenre(genre: String) void
+        +setSynopsis(synopsis: String) void
+    }
+
+    ItemServlet --|> HttpServlet
+    ItemServlet --> ItemDAO : usa
+    ItemServlet ..> ItemCatalogo : cria e atualiza
+    ItemDAO ..> ItemCatalogo : mapeia resultados
